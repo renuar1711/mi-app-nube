@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Formulario de contacto · solo index</title>
+    <!-- Fuente y estilos inline para mantener todo en un único archivo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET Y VARIABLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f2f8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            line-height: 1.5;
+            color: #1e293b;
+        }
+
+        .contenedor {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 32px;
+            box-shadow: 0 25px 40px -15px rgba(0,20,30,0.15);
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            color: #0f2c3a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subtitulo {
+            font-size: 0.95rem;
+            color: #4a6572;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b9b9b;
+            padding-left: 1rem;
+            font-weight: 400;
+        }
+
+        /* GRUPO DE FORMULARIO */
+        .grupo {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #1e3b4a;
+        }
+
+        label i {
+            margin-right: 6px;
+            color: #2f7c7c;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            border: 1.5px solid #dbe7ed;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.2s ease;
+            outline: none;
+            color: #1e2f3a;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #2f9b9b;
+            box-shadow: 0 0 0 4px rgba(47,155,155,0.1);
+            background: #ffffff;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* BOTÓN */
+        .btn-enviar {
+            background: #1e5a5a;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 1rem 1.8rem;
+            border: none;
+            border-radius: 40px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            margin-top: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-enviar:hover {
+            background: #144747;
+            transform: scale(0.98);
+            box-shadow: 0 8px 20px rgba(26,80,80,0.2);
+        }
+
+        /* MENSAJE DE ÉXITO (oculto por defecto) */
+        .mensaje-exito {
+            margin-top: 1.8rem;
+            padding: 1rem;
+            background: #d9f0ec;
+            border-radius: 50px;
+            color: #0e4f4f;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid #98c9c9;
+            font-size: 0.95rem;
+        }
+
+        .mensaje-exito.mostrar {
+            display: flex;
+        }
+
+        /* PEQUEÑOS DETALLES */
+        .requerido {
+            color: #c24141;
+            margin-left: 4px;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6f8c9c;
+            border-top: 1px dashed #cbd8e0;
+            padding-top: 1.5rem;
+        }
+
+        footer i {
+            color: #2f7c7c;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 450px) {
+            .contenedor {
+                padding: 1.8rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome 6 (iconos gratuitos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>
+            <i class="fas fa-paper-plane" style="color: #2a7a7a;"></i> 
+            ¿Hablamos?
+        </h1>
+        <div class="subtitulo">
+            <i class="fas fa-asterisk" style="font-size: 0.6rem; vertical-align: middle; color: #2f9b9b;"></i> 
+            Todos los campos con <span class="requerido">*</span> son obligatorios
+        </div>
+
+        <!-- FORMULARIO -->
+        <form id="formContacto">
+            <div class="grupo">
+                <label for="nombre">
+                    <i class="fas fa-user"></i> Nombre completo <span class="requerido">*</span>
+                </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Pérez" required>
+            </div>
+
+            <div class="grupo">
+                <label for="email">
+                    <i class="fas fa-envelope"></i> Correo electrónico <span class="requerido">*</span>
+                </label>
+                <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+
+            <div class="grupo">
+                <label for="asunto">
+                    <i class="fas fa-tag"></i> Asunto
+                </label>
+                <select id="asunto" name="asunto">
+                    <option value="consulta">Consulta general</option>
+                    <option value="proyecto">Colaboración / Proyecto</option>
+                    <option value="soporte">Soporte técnico</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="grupo">
+                <label for="mensaje">
+                    <i class="fas fa-comment-dots"></i> Mensaje <span class="requerido">*</span>
+                </label>
+                <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-enviar">
+                <i class="fas fa-rocket"></i> Enviar mensaje
+            </button>
+        </form>
+
+        <!-- Mensaje de confirmación (aparece al enviar) -->
+        <div id="mensajeExito" class="mensaje-exito">
+            <i class="fas fa-check-circle"></i> ¡Formulario enviado con éxito! (solo demostración)
+        </div>
+
+        <footer>
+            <i class="fas fa-file-code"></i> Formulario "solo index" · HTML, CSS, JS integrados · 2025
+        </footer>
+    </div>
+
+    <!-- Pequeño script para intercepción del envío y validación visual -->
+    <script>
+        (function() {
+            const form = document.getElementById('formContacto');
+            const msgExito = document.getElementById('mensajeExito');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();  // Evita recargar la página (solo demostración)
+
+                // Validación adicional simple (opcional)
+                const nombre = document.getElementById('nombre');
+                const email = document.getElementById('email');
+                const mensaje = document.getElementById('mensaje');
+
+                if (!nombre.value.trim() || !email.value.trim() || !mensaje.value.trim()) {
+                    alert('❌ Por favor completa todos los campos obligatorios.');
+                    return;
+                }
+
+                if (!email.value.includes('@') || !email.value.includes('.')) {
+                    alert('📧 Ingresa un correo electrónico válido.');
+                    return;
+                }
+
+                // Si todo está correcto, mostramos el mensaje de éxito
+                msgExito.classList.add('mostrar');
+
+                // (Opcional) Limpiar formulario después de un tiempo
+                setTimeout(() => {
+                    form.reset();
+                    // Quitamos el mensaje después de 5 segundos
+                    setTimeout(() => {
+                        msgExito.classList.remove('mostrar');
+                    }, 4000);
+                }, 500);
+            });
+
+            // Pequeño detalle: quitar el mensaje si se vuelve a enfocar algún campo (opcional)
+            const campos = form.querySelectorAll('input, textarea, select');
+            campos.forEach(campo => {
+                campo.addEventListener('focus', () => {
+                    msgExito.classList.remove('mostrar');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
